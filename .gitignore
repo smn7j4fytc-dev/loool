@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.next/
+.env
+*.env.local
+*.pem
+*.p12
+*.p8
+*.cer
+*.der
+prisma/migrations/
+.DS_Store
+*.log
+coverage/
