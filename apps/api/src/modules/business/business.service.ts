@@ -88,7 +88,8 @@ export async function createBusiness(input: CreateBusinessInput) {
 }
 
 export async function updateBusiness(id: string, input: UpdateBusinessInput) {
-  return prisma.business.update({ where: { id }, data: input });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return prisma.business.update({ where: { id }, data: input as any });
 }
 
 export async function setupGoogleWallet(businessId: string) {

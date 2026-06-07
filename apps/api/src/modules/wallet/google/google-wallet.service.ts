@@ -76,7 +76,7 @@ function buildLocations(raw: unknown): Array<{ latitude: number; longitude: numb
   if (!Array.isArray(raw)) return [];
   return raw
     .filter((l: unknown) => typeof l === 'object' && l !== null && 'lat' in l && 'lng' in l)
-    .map((l: { lat: number; lng: number }) => ({ latitude: l.lat, longitude: l.lng }));
+    .map((l: any) => ({ latitude: l.lat as number, longitude: l.lng as number }));
 }
 
 function buildClassPayload(b: BusinessConfig) {

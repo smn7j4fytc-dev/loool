@@ -15,7 +15,7 @@ export async function customerRoutes(app: FastifyInstance) {
   app.post('/register', async (request, reply) => {
     const body = registerSchema.safeParse(request.body);
     if (!body.success) return reply.status(400).send({ error: body.error.flatten() });
-    const result = await registerCustomer(body.data);
+    const result = await registerCustomer(body.data as any);
     reply.status(result.isNew ? 201 : 200).send({ data: result });
   });
 

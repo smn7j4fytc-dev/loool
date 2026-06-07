@@ -17,13 +17,8 @@ export async function authRoutes(app: FastifyInstance) {
 
     const { email, password } = body.data;
 
-    // Intentar business admin primero
-    let payload = await loginBusinessAdmin(email, password);
-
-    // Si no, intentar staff
-    if (!payload) {
-      payload = await loginStaff(email, password);
-    }
+    // Intentar business admin primero, luego staff
+    const payload = (await loginBusinessAdmin(email, password)) ?? (await loginStaff(email, password));
 
     if (!payload) {
       return reply.status(401).send({ error: 'Credenciales incorrectas' });

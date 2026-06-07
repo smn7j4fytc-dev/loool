@@ -48,7 +48,7 @@ export async function businessRoutes(app: FastifyInstance) {
   app.post('/', { preHandler: [requireSuperAdmin] }, async (request, reply) => {
     const body = createSchema.safeParse(request.body);
     if (!body.success) return reply.status(400).send({ error: body.error.flatten() });
-    const business = await createBusiness(body.data);
+    const business = await createBusiness(body.data as any);
     reply.status(201).send({ data: business });
   });
 
@@ -67,7 +67,7 @@ export async function businessRoutes(app: FastifyInstance) {
     if (!assertBusiness(request, id)) return reply.status(403).send({ error: 'Acceso denegado' });
     const body = updateSchema.safeParse(request.body);
     if (!body.success) return reply.status(400).send({ error: body.error.flatten() });
-    const business = await updateBusiness(id, body.data);
+    const business = await updateBusiness(id, body.data as any);
     reply.send({ data: business });
   });
 

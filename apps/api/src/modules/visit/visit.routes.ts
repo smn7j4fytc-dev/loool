@@ -23,7 +23,7 @@ export async function visitRoutes(app: FastifyInstance) {
         ...body.data,
         businessId,
         staffId: role === 'STAFF' ? staffId : undefined,
-      });
+      } as any);
       reply.status(201).send({ data: result });
     } catch (err: unknown) {
       const e = err as Error;
